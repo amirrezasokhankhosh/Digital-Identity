@@ -1,7 +1,7 @@
 'use strict';
 
-const { EntityApp } = require("../entity/entity-application/entityApp");
-const entityApp = new EntityApp();
+const { IdentityApp } = require("../identity/identity-application/identityApp");
+const identityApp = new IdentityApp();
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -25,7 +25,7 @@ const tlsCertPath = path.resolve(cryptoPath, 'peers', 'peer0.org1.example.com', 
 const peerEndPoint = "localhost:7051";
 const peerHostAlias = "peer0.org1.example.com";
 
-const contractEntity = InitConnection("entity", "entityCC");
+const contractIdentity = InitConnection("identity", "identityCC");
 
 const axios = require("axios");
 
@@ -86,23 +86,23 @@ app.get('/', (req, res) => {
     res.send("Hello World!");
 });
 
-app.post('/api/entity', jsonParser, async (req, res) => {
-    const message = await entityApp.createEntity(contractEntity, req.body.id, req.body.publicKey);
+app.post('/api/identity', jsonParser, async (req, res) => {
+    const message = await identityApp.createIdentity(contractIdentity, req.body.id, req.body.publicKey);
     res.send(message);
 })
 
-app.get('/api/entity', jsonParser, async (req, res) => {
-    const entity = await entityApp.readEntity(contractEntity, req.body.id);
-    res.send(entity);
+app.get('/api/identity', jsonParser, async (req, res) => {
+    const identity = await identityApp.readIdentity(contractIdentity, req.body.id);
+    res.send(identity);
 });
 
-app.put('/api/entity', jsonParser, async (req, res) => {
-    const message = await entityApp.updateEntity(contractEntity, req.body.id, req.body.publicKey);
+app.put('/api/identity', jsonParser, async (req, res) => {
+    const message = await identityApp.updateIdentity(contractIdentity, req.body.id, req.body.publicKey);
     res.send(message);
 })
 
-app.delete('/api/entity', jsonParser, async (req, res) => {
-    const message = await entityApp.deleteEntity(contractEntity, req.body.id);
+app.delete('/api/identity', jsonParser, async (req, res) => {
+    const message = await identityApp.deleteIdentity(contractIdentity, req.body.id);
     res.send(message);
 })
 

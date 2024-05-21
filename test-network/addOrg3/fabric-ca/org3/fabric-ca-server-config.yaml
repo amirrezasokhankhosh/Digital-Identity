@@ -255,7 +255,7 @@ affiliations:
 #  the default expiration ("expiry" field) is "43800h" which is 5 years in hours.
 #  Note that "isca" is true, meaning that it issues a CA certificate.
 #  A maxpathlen of 0 means that the intermediate CA cannot issue other
-#  intermediate CA certificates, though it can still issue end entity certificates.
+#  intermediate CA certificates, though it can still issue end identity certificates.
 #  (See RFC 5280, section 4.2.1.9)
 #
 #  The "tls" profile subsection is used to sign TLS certificate requests;
@@ -297,10 +297,10 @@ signing:
 #  2) pathlength == 1 means a limit of 1 is requested which is the default for
 #     a root CA.  This means the root CA can issue intermediate CA certificates,
 #     but these intermediate CAs may not in turn issue other CA certificates
-#     though they can still issue end entity certificates.
+#     though they can still issue end identity certificates.
 #  3) pathlength == 0 means a limit of 0 is requested;
 #     this is the default for an intermediate CA, which means it can not issue
-#     CA certificates though it can still issue end entity certificates.
+#     CA certificates though it can still issue end identity certificates.
 ###########################################################################
 csr:
    cn: ca.org3.example.com
